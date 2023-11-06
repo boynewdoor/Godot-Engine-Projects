@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/bg.png" type="Texture" id=1]
+[ext_resource path="res://Assets/grid.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/SelectableArea.tscn" type="PackedScene" id=3]
+
+[node name="Game" type="Node2D"]
+
+[node name="BG" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="grid" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
+texture = ExtResource( 2 )
+
+[node name="POS0" parent="grid" instance=ExtResource( 3 )]
+position = Vector2( -155, -140 )
+pos = 0
+
+[node name="POS1" parent="grid" instance=ExtResource( 3 )]
+position = Vector2( 0, -140 )
+pos = 1
+
+[node name="POS2" parent="grid" instance=ExtResource( 3 )]
+position = Vector2( 155, -140 )
+pos = 2
+
+[node name="POS3" parent="grid" instance=ExtResource( 3 )]
+position = Vector2( -155, 0 )
+pos = 3
+
+[node name="POS4" parent="grid" instance=ExtResource( 3 )]
+pos = 4
+
+[node name="POS5" parent="grid" instance=ExtResource( 3 )]
+position = Vector2( 155, 0 )
+pos = 5
+
+[node name="POS6" parent="grid" instance=ExtResource( 3 )]
+position = Vector2( -155, 140 )
+pos = 6
+
+[node name="POS7" parent="grid" instance=ExtResource( 3 )]
+position = Vector2( 0, 140 )
+pos = 7
+
+[node name="POS8" parent="grid" instance=ExtResource( 3 )]
+position = Vector2( 155, 140 )
+pos = 8

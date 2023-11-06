@@ -1,0 +1,111 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Teko-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://Assets/backgroun_main_menu.jpg" type="Texture" id=3]
+[ext_resource path="res://Assets/singleplayer.png" type="Texture" id=4]
+[ext_resource path="res://Assets/massiveMultiplayer.png" type="Texture" id=5]
+[ext_resource path="res://Assets/confirmation_001.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Assets/close_002.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Assets/exitLeft.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 25
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 25
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0.505882, 1, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 0.505882, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0, 0.505882, 1, 1 )
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -3.0
+margin_top = 1.0
+margin_right = -3.0
+margin_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Background" type="TextureRect" parent="."]
+margin_left = 3.0
+margin_top = -1.0
+margin_right = 1923.0
+margin_bottom = 1079.0
+texture = ExtResource( 3 )
+
+[node name="Title" type="Label" parent="."]
+margin_left = 830.0
+margin_top = 166.0
+margin_right = 1021.0
+margin_bottom = 253.0
+custom_fonts/font = SubResource( 1 )
+text = "The Cave"
+align = 1
+
+[node name="Description" type="Label" parent="."]
+margin_left = 732.0
+margin_top = 280.0
+margin_right = 1144.0
+margin_bottom = 355.0
+custom_fonts/font = SubResource( 5 )
+text = "A place where the fastest conqueror wins!
+"
+
+[node name="SinglePlayer" type="Button" parent="."]
+margin_left = 832.0
+margin_top = 369.0
+margin_right = 1011.0
+margin_bottom = 439.0
+custom_colors/font_color_disabled = Color( 0, 1, 1, 1 )
+custom_fonts/font = SubResource( 6 )
+custom_styles/hover = SubResource( 7 )
+text = "Single Player"
+icon = ExtResource( 4 )
+
+[node name="Multiplayer" type="Button" parent="."]
+margin_left = 834.0
+margin_top = 459.0
+margin_right = 1013.0
+margin_bottom = 529.0
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 8 )
+text = "Local Multiplayer"
+icon = ExtResource( 5 )
+
+[node name="ExitGame" type="Button" parent="."]
+margin_left = 834.0
+margin_top = 552.0
+margin_right = 1013.0
+margin_bottom = 622.0
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 9 )
+text = "Exit"
+icon = ExtResource( 8 )
+
+[node name="PlaySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="ExitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[connection signal="pressed" from="SinglePlayer" to="." method="_on_SinglePlayer_pressed"]
+[connection signal="pressed" from="Multiplayer" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="Multiplayer" to="." method="_on_Multiplayer_pressed"]
+[connection signal="pressed" from="ExitGame" to="." method="_on_ExitButton_pressed"]

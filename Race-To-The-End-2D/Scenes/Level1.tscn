@@ -1,0 +1,303 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://walls.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Coin.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Switch.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/tileGreen_17.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/Level1.gd" type="Script" id=6]
+[ext_resource path="res://Teko-Bold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Scripts/HUD.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Player1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/HUD1.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Player2.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/HUD2.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/Player3.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scripts/HUD3.gd" type="Script" id=14]
+[ext_resource path="res://Scenes/Bee.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Bomb.tscn" type="PackedScene" id=16]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 992, 96 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "SlideUp"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 992, 96 ), Vector2( 992, 32 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.027451, 0.027451, 0.027451, 0.560784 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="DynamicFont" id=5]
+size = 30
+font_data = ExtResource( 7 )
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Door" type="StaticBody2D" parent="."]
+position = Vector2( 992, 96 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Door"]
+modulate = Color( 0.054902, 0.501961, 0.101961, 1 )
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Door"]
+anims/RESET = SubResource( 2 )
+anims/SlideUp = SubResource( 3 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 65536, 0, 0, 65545, 0, 0, 65547, 0, 0, 65549, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131079, 0, 0, 131083, 0, 0, 131085, 0, 0, 131087, 0, 0, 196610, 0, 0, 196615, 0, 0, 196617, 0, 0, 196619, 0, 0, 196623, 0, 0, 262146, 0, 0, 262148, 0, 0, 262149, 0, 0, 262151, 0, 0, 262153, 0, 0, 262155, 0, 0, 262157, 0, 0, 262159, 0, 0, 327682, 0, 0, 327684, 0, 0, 327687, 0, 0, 327689, 0, 0, 327693, 0, 0, 327695, 0, 0, 393218, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393225, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 393231, 0, 0, 458752, 0, 0, 458761, 0, 0, 458767, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0, 524298, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0 )
+
+[node name="Switch" parent="." instance=ExtResource( 4 )]
+position = Vector2( 352, 353 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 32, 173 )
+
+[node name="Player1" parent="." instance=ExtResource( 9 )]
+position = Vector2( 30, 243 )
+
+[node name="Player2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 32, 321 )
+
+[node name="Player3" parent="." instance=ExtResource( 13 )]
+position = Vector2( 40, 407 )
+
+[node name="Coin" parent="." instance=ExtResource( 3 )]
+position = Vector2( 227, 98 )
+
+[node name="Coin2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 98, 291 )
+
+[node name="Coin3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 94, 480 )
+
+[node name="Coin4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 224, 354 )
+
+[node name="Coin5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 412, 480 )
+
+[node name="Coin6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 411, 292 )
+
+[node name="Coin7" parent="." instance=ExtResource( 3 )]
+position = Vector2( 609, 161 )
+
+[node name="Coin8" parent="." instance=ExtResource( 3 )]
+position = Vector2( 542, 419 )
+
+[node name="Coin9" parent="." instance=ExtResource( 3 )]
+position = Vector2( 801, 166 )
+
+[node name="Coin10" parent="." instance=ExtResource( 3 )]
+position = Vector2( 929, 362 )
+
+[node name="Coin11" parent="." instance=ExtResource( 3 )]
+position = Vector2( 929, 101 )
+
+[node name="Coin12" parent="." instance=ExtResource( 3 )]
+position = Vector2( 674, 474 )
+
+[node name="Bomb" parent="." instance=ExtResource( 16 )]
+position = Vector2( 98, 100 )
+
+[node name="Bomb2" parent="." instance=ExtResource( 16 )]
+position = Vector2( 287, 477 )
+
+[node name="Bomb3" parent="." instance=ExtResource( 16 )]
+position = Vector2( 544, 224 )
+
+[node name="Bomb4" parent="." instance=ExtResource( 16 )]
+position = Vector2( 797, 350 )
+
+[node name="HUD" type="Control" parent="."]
+margin_left = 37.0
+margin_top = 16.0
+margin_right = 77.0
+margin_bottom = 56.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Panel" type="Panel" parent="HUD"]
+margin_right = 193.0
+margin_bottom = 62.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="Label" type="Label" parent="HUD"]
+margin_left = 18.0
+margin_top = 8.0
+margin_right = 91.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 5 )
+text = "SCORE: "
+
+[node name="HUD1" type="Control" parent="."]
+margin_left = 291.0
+margin_top = 17.0
+margin_right = 331.0
+margin_bottom = 57.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Panel" type="Panel" parent="HUD1"]
+margin_right = 193.0
+margin_bottom = 62.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="Label" type="Label" parent="HUD1"]
+margin_left = 18.0
+margin_top = 8.0
+margin_right = 91.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 5 )
+text = "SCORE: "
+
+[node name="HUD2" type="Control" parent="."]
+margin_left = 541.0
+margin_top = 16.0
+margin_right = 581.0
+margin_bottom = 56.0
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Panel" type="Panel" parent="HUD2"]
+margin_right = 193.0
+margin_bottom = 62.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="Label" type="Label" parent="HUD2"]
+margin_left = 18.0
+margin_top = 8.0
+margin_right = 91.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 5 )
+text = "SCORE: "
+
+[node name="HUD3" type="Control" parent="."]
+margin_left = 794.0
+margin_top = 16.0
+margin_right = 834.0
+margin_bottom = 56.0
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Panel" type="Panel" parent="HUD3"]
+margin_right = 193.0
+margin_bottom = 62.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="Label" type="Label" parent="HUD3"]
+margin_left = 18.0
+margin_top = 8.0
+margin_right = 91.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 5 )
+text = "SCORE: "
+
+[node name="Bee" parent="." instance=ExtResource( 15 )]
+position = Vector2( 535, 482 )
+
+[node name="Bee2" parent="." instance=ExtResource( 15 )]
+position = Vector2( 538, 94 )
+
+[connection signal="body_entered" from="Switch" to="." method="_on_Switch_body_entered"]
+[connection signal="coin_collected" from="Coin" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin" to="HUD1" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin" to="HUD2" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin" to="HUD3" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin2" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin2" to="HUD1" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin2" to="HUD2" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin2" to="HUD3" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin3" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin3" to="HUD1" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin3" to="HUD2" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin3" to="HUD3" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin4" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin4" to="HUD1" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin4" to="HUD2" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin4" to="HUD3" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin5" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin5" to="HUD1" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin5" to="HUD2" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin5" to="HUD3" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin6" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin6" to="HUD1" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin6" to="HUD2" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin6" to="HUD3" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin7" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin7" to="HUD1" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin7" to="HUD2" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin7" to="HUD3" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin8" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin8" to="HUD1" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin8" to="HUD2" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin8" to="HUD3" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin9" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin9" to="HUD1" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin9" to="HUD2" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin9" to="HUD3" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin10" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin10" to="HUD1" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin10" to="HUD2" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin10" to="HUD3" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin11" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin11" to="HUD1" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin11" to="HUD2" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin11" to="HUD3" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin12" to="HUD" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin12" to="HUD1" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin12" to="HUD2" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Coin12" to="HUD3" method="_on_coin_collected"]
+[connection signal="bomb_explosion" from="Bomb" to="HUD" method="_on_bomb_explosion"]
+[connection signal="bomb_explosion" from="Bomb2" to="HUD" method="_on_bomb_explosion"]
+[connection signal="bomb_explosion" from="Bomb3" to="HUD" method="_on_bomb_explosion"]
+[connection signal="bomb_explosion" from="Bomb4" to="HUD" method="_on_bomb_explosion"]

@@ -1,0 +1,78 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Teko-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/GameOverScene.gd" type="Script" id=2]
+[ext_resource path="res://Assets/wp2578582-wallpaper-gamer.jpg" type="Texture" id=3]
+[ext_resource path="res://Assets/return.png" type="Texture" id=4]
+[ext_resource path="res://Assets/open_002.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Assets/close_002.ogg" type="AudioStream" id=6]
+
+[sub_resource type="ImageTexture" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0, 0.505882, 0.6, 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 0.505882, 0.6, 1 )
+
+[node name="GameOverScene" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Background" type="TextureRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+texture = SubResource( 6 )
+
+[node name="GameOver" type="Sprite" parent="Background"]
+position = Vector2( 960, 540 )
+texture = ExtResource( 3 )
+
+[node name="GameOverMessage" type="Label" parent="."]
+visible = false
+margin_left = 768.0
+margin_top = 454.0
+margin_right = 1118.0
+margin_bottom = 569.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "GAME OVER"
+
+[node name="RestartSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="Restart" type="Button" parent="."]
+margin_left = 1730.0
+margin_top = 1005.0
+margin_right = 1894.0
+margin_bottom = 1061.0
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 7 )
+text = "RESTART"
+icon = ExtResource( 4 )
+
+[node name="ExitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Exit" type="Button" parent="."]
+margin_left = 47.0
+margin_top = 1008.0
+margin_right = 109.0
+margin_bottom = 1058.0
+custom_fonts/font = SubResource( 4 )
+custom_styles/hover = SubResource( 8 )
+text = "EXIT"
+
+[connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]

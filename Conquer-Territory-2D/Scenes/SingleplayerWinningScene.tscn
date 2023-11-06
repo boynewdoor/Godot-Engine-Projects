@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Teko-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/SingleplayerWinningScene.gd" type="Script" id=2]
+[ext_resource path="res://Assets/menuList.png" type="Texture" id=3]
+[ext_resource path="res://Assets/the-cave-1080P-wallpaper.jpg" type="Texture" id=4]
+[ext_resource path="res://Assets/close_002.ogg" type="AudioStream" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0.505882, 0.6, 1 )
+
+[node name="SingleplayerWinningScene" type="Node2D"]
+scale = Vector2( 1, 1.05 )
+script = ExtResource( 2 )
+
+[node name="Background" type="TextureRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+texture = ExtResource( 4 )
+
+[node name="George_Label" type="Label" parent="."]
+margin_left = 1470.0
+margin_top = 951.429
+margin_right = 1878.0
+margin_bottom = 1009.43
+custom_fonts/font = SubResource( 1 )
+text = "Score: "
+
+[node name="Back" type="Button" parent="."]
+margin_left = 59.0
+margin_top = 947.619
+margin_right = 185.0
+margin_bottom = 1003.62
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 3 )
+text = "BACK"
+icon = ExtResource( 3 )
+
+[node name="ExitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]
